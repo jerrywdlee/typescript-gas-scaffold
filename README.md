@@ -31,6 +31,11 @@ $ npm build
 # gapps cannot up load Scripts which embedded in Spreadsheets or other files
 ```
 
+## Notice
+
+- If want connect to Spreadsheets ect. Need run on dev console first and apply permission
+- If want update your REST API, need update web app setting after deploy your app
+
 ## Reference
 [Japanease post](https://qiita.com/nsawa/items/96c5300c811856024789).
 [Git Hub](https://github.com/naoki-sawada/gas-typescript-webpack.git).
