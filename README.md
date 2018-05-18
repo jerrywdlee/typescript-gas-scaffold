@@ -13,6 +13,7 @@ This is a scaffold for writing Google Apps Script in TypeScript and building wit
 ### Clone Repo
 ```sh
 $ git clone https://github.com/jerrywdlee/typescript-gas-scaffold.git <YOUR-NEW-REPO-NAME>
+$ cd <YOUR-NEW-REPO-NAME>
 ```
 
 ### Install packages
