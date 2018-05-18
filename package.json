@@ -1,11 +1,12 @@
 {
-  "name": "gas-typescript-webpack",
-  "version": "0.0.1",
-  "description": "Check Exchange rate of http://www1.payforex.net and record to spreadsheets",
+  "name": "gas-typescript-scaffold",
+  "version": "0.0.3",
+  "description": "Scaffold to create GAS app from Typescript",
   "main": "src/index.ts",
   "author": "Jerry lee",
   "license": "MIT",
   "scripts": {
+    "init": "del .git && git init",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "watch": "watch 'npm run lint && npm run build' src/",
     "build": "webpack"
@@ -13,6 +14,7 @@
   "devDependencies": {
     "@types/google-apps-script": "^0.0.14",
     "awesome-typescript-loader": "^3.2.3",
+    "del-cli": "^1.1.0",
     "es3ify-webpack-plugin": "^0.0.1",
     "gas-webpack-plugin": "^0.2.1",
     "tslint": "^5.7.0",

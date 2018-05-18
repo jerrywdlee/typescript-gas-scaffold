@@ -1,17 +1,28 @@
-# gas typescript webpack
+# GAS Typescript Scaffold
 
 ## About
 
-This is an example of writing Google Apps Script in TypeScript and building with webpack.
+This is a scaffold for writing Google Apps Script in TypeScript and building with webpack.
 
 ## Requirements
 
+* Git
 * Node.js 8.10.0 or heigher
 
-## Install
-### install this project
+## Install & Initiation
+### Clone Repo
+```sh
+$ git clone https://github.com/jerrywdlee/typescript-gas-scaffold.git <YOUR-NEW-REPO-NAME>
+```
+
+### Install packages
 ```sh
 $ npm i
+```
+
+### Init Project
+```sh
+$ npm run init
 ```
 
 ## Usage
@@ -37,6 +48,5 @@ $ npm build
 - If want update your REST API, need update web app setting after deploy your app
 
 ## Reference
-[Japanease post](https://qiita.com/nsawa/items/96c5300c811856024789).
-[Git Hub](https://github.com/naoki-sawada/gas-typescript-webpack.git).
+[Reffered From Here](https://github.com/naoki-sawada/gas-typescript-webpack.git).  
 [node-google-apps-script](https://github.com/danthareja/node-google-apps-script).
