@@ -35,6 +35,10 @@ If you watnt to use watch mode,
 $ npm run watch
 ```
 
+### Do Dev
+
+Edit code in `src/app.ts` (and/or other codes in `/src`), then enjoy it ;)
+
 ### Deploy
 ```sh
 $ npm build
