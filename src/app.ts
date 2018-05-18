@@ -13,3 +13,12 @@ global.doGet = (e) => {
   sheet.appendRow([(new Date()).toLocaleString(), JSON.stringify(e)])
   return T.text('foo')
 }
+
+global.fetchSampleJson = () => {
+  // Need run on dev console and apply your app can connect to outsite service
+  const url = 'https://raw.githubusercontent.com/LearnWebCode/json-example/master/animals-1.json'
+  const res = T.get(url)
+  const json = JSON.parse(res.getContentText())
+  Logger.log(json.map((a) => a.name))
+  // will output: [Meowsy, Barky, Purrpaws]
+}
