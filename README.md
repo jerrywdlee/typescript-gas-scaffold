@@ -39,13 +39,42 @@ $ npm run watch
 
 Edit code in `src/app.ts` (and/or other codes in `/src`), then enjoy it ;)
 
-### Deploy
+### Deploy by [Google Clasp](https://github.com/google/clasp#readme)
+_**May Need Enable the Apps Script API at https://script.google.com/home/usersettings**_
+
+#### Login
 ```sh
-$ npm build
-# Then copy it to your GAS file
-# OR Use `gapps upload` if node-google-apps-script installed
-# gapps cannot up load Scripts which embedded in Spreadsheets or other files
+$ npm run clasp login
+# OR
+$ cd build/ && $(npm bin)/clasp login
 ```
+
+#### Clone
+_**Change `code.gs` (or other name) generated automatically to `bundle.gs`**_  
+```sh
+$ npm run clasp clone <scriptId>
+# OR
+$ cd build/ && $(npm bin)/clasp clone <scriptId>
+```
+
+#### Pull
+```sh
+$ npm run clasp pull
+# OR
+$ cd build/ && $(npm bin)/clasp pull
+```
+
+#### Push
+_**Need Do `Clone` and `Pull` first!**_  
+_**May need refresh work space to show change**_
+```sh
+$ npm run clasp push
+# OR
+$ cd build/ && $(npm bin)/clasp push
+```
+
+### Watch & Push
+If Clasp is configed, run `npm run watch_push` will be faster.
 
 ## Notice
 
@@ -53,5 +82,6 @@ $ npm build
 - If want update your REST API, need update web app setting after deploy your app
 
 ## Reference
+[Google Clasp](https://github.com/google/clasp#readme).  
 [Reffered From Here](https://github.com/naoki-sawada/gas-typescript-webpack.git).  
 [node-google-apps-script](https://github.com/danthareja/node-google-apps-script).
