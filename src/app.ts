@@ -1,4 +1,4 @@
-import { Spreadsheet as S, Transport as T } from './lib/'
+import { Slack, Spreadsheet as S, Transport as T } from './lib/'
 import { Test } from './Test'
 
 global.test = () => {
@@ -38,4 +38,15 @@ global.SheetDemo = () => {
   const data = ss.getCellPairs('A:B')
   Logger.log(JSON.stringify(data))
   ss.updateValsByKeys({ key3: 'new_key_3' }, 'A:B')
+}
+
+global.SlackDemo = () => {
+  const slackText = '<!here> <@lee> Hello World!'
+  const url = 'https://hooks.slack.com/services/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'
+  const slack = new Slack(url, {
+    channel: '#slack-dev',
+    username: 'Slack Bot',
+    icon_emoji: ':robot_face:',
+  })
+  slack.sendMsg({ text: slackText })
 }

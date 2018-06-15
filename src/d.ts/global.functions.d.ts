@@ -4,6 +4,7 @@ interface Global {
   doPost(e): any
   fetchSampleJson(): any
   SheetDemo(): any
+  SlackDemo(): any
 }
 
 declare var global: Global
