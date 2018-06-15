@@ -22,3 +22,20 @@ global.fetchSampleJson = () => {
   Logger.log(json.map((a) => a.name))
   // will output: [Meowsy, Barky, Purrpaws]
 }
+
+global.SheetDemo = () => {
+  // Insert Demo Data
+  const demoData = [
+    ['key1', 'key_0001'],
+    ['key2', 'key_0002'],
+    ['key3', 'key_0003'],
+  ]
+  const sheet = S.connect()
+  demoData.forEach(row => {
+    sheet.appendRow(row)
+  })
+  const ss = new S()
+  const data = ss.getCellPairs('A:B')
+  Logger.log(JSON.stringify(data))
+  ss.updateValsByKeys({ key3: 'new_key_3' }, 'A:B')
+}

@@ -3,6 +3,7 @@ interface Global {
   doGet(e): any
   doPost(e): any
   fetchSampleJson(): any
+  SheetDemo(): any
 }
 
 declare var global: Global
