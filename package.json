@@ -1,5 +1,5 @@
 {
-  "name": "gas-typescript-scaffold",
+  "name": "typescript-gas-scaffold",
   "version": "0.0.3",
   "description": "Scaffold to create GAS app from Typescript",
   "main": "src/index.ts",
