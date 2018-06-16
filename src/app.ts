@@ -41,12 +41,15 @@ global.SheetDemo = () => {
 }
 
 global.SlackDemo = () => {
-  const slackText = '<!here> <@lee> Hello World!'
-  const url = 'https://hooks.slack.com/services/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'
+  /*
+  const slackText = '<!here> <@slackId> Hello World!'
+  const url = 'https://hooks.slack.com/services/...<YOUR-WEBHOOK>'
   const slack = new Slack(url, {
-    channel: '#slack-dev',
+    channel: '#slack-bot',
     username: 'Slack Bot',
     icon_emoji: ':robot_face:',
   })
+  // Enable Your Slack Webhook Then Test This
   slack.sendMsg({ text: slackText })
+  */
 }
