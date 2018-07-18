@@ -6,12 +6,31 @@ global.test = () => {
   test.echo('new world.')
 }
 
+// curl -L https://script.google.com/macros/s/<YOUR-GAS-APP-ID>/exec?res=[text|html|html_from_file|json|redirect_to]
 global.doGet = (e) => {
   Logger.log(JSON.stringify(e))
   // Need run on dev console and apply your app can connect to Spreadsheets
   const sheet = S.connect()
   sheet.appendRow([(new Date()).toLocaleString(), JSON.stringify(e)])
-  return T.text('foo')
+  let params = ''
+  if (e) {
+    params = e.parameter.res.toString()
+  }
+
+  switch (params) {
+    case 'text':
+      return T.text('foo') // show string 'foo'
+    case 'html':
+      return T.html('<h1>Hello World</h1>') // show html snippet
+    case 'html_from_file':
+      return T.htmlFromFile('sample') // show html page `sample.html`
+    case 'json':
+      return T.json({ foo: 'bar' }) // show a json
+    case 'redirect_to':
+      return T.redirectTo('https://example.org', 'Loading...') // redirect to `https://example.org`
+    default:
+      return T.htmlFromFile('sample')
+  }
 }
 
 global.fetchSampleJson = () => {
