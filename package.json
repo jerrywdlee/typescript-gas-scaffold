@@ -9,15 +9,16 @@
   "scripts": {
     "init": "del .git && git init",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
-    "watch": "watch 'npm run lint && npm run build' src/",
+    "watch": "watch 'npm run lint && npm run build' src/ public/",
     "build": "webpack",
     "clasp": "cd build/ && clasp",
-    "watch_push": "watch 'npm run lint && npm run build && npm run clasp push' src/"
+    "watch_push": "watch 'npm run lint && npm run build && npm run clasp push' src/ public/"
   },
   "devDependencies": {
     "@google/clasp": "^1.4.1",
     "@types/google-apps-script": "^0.0.25",
     "awesome-typescript-loader": "^3.5.0",
+    "copy-webpack-plugin": "^4.5.2",
     "del-cli": "^1.1.0",
     "es3ify-webpack-plugin": "^0.0.1",
     "gas-webpack-plugin": "^0.3.0",

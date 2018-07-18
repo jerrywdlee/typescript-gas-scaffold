@@ -1,4 +1,5 @@
 const GasPlugin = require('gas-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const es3ifyPlugin = require('es3ify-webpack-plugin');
 const MinifyGas = require('./plugins/minify-gas');
 
@@ -17,6 +18,9 @@ module.exports = {
     ],
   },
   plugins: [
+    new CopyWebpackPlugin([
+      { from: 'public' }
+    ]),
     new GasPlugin(),
     new es3ifyPlugin(),
     new MinifyGas(),
