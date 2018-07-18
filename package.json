@@ -2,6 +2,7 @@
   "name": "typescript-gas-scaffold",
   "version": "0.0.3",
   "description": "Scaffold to create GAS app from Typescript",
+  "repository": "https://github.com/jerrywdlee/typescript-gas-scaffold.git",
   "main": "src/index.ts",
   "author": "Jerry lee",
   "license": "MIT",
@@ -14,14 +15,14 @@
     "watch_push": "watch 'npm run lint && npm run build && npm run clasp push' src/"
   },
   "devDependencies": {
-    "@google/clasp": "^1.3.2",
-    "@types/google-apps-script": "^0.0.14",
-    "awesome-typescript-loader": "^3.2.3",
+    "@google/clasp": "^1.4.1",
+    "@types/google-apps-script": "^0.0.25",
+    "awesome-typescript-loader": "^3.5.0",
     "del-cli": "^1.1.0",
     "es3ify-webpack-plugin": "^0.0.1",
-    "gas-webpack-plugin": "^0.2.1",
-    "tslint": "^5.7.0",
-    "typescript": "^2.5.2",
+    "gas-webpack-plugin": "^0.3.0",
+    "tslint": "^5.11.0",
+    "typescript": "^2.9.2",
     "watch": "^1.0.2",
     "webpack": "^3.5.6"
   }
