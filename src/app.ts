@@ -56,7 +56,18 @@ global.SheetDemo = () => {
   const ss = new S()
   const data = ss.getCellPairs('A:B')
   Logger.log(JSON.stringify(data))
-  ss.updateValsByKeys({ key3: 'new_key_3' }, 'A:B')
+  ss.updateValsByKeys({ key3: 'new_key_3' }, 'A:B', 'settings')
+}
+
+global.RotateLogDeme = () => {
+  const maxLogNum = 10
+
+  const logSheet = S.connect({ sheetName: 'logs' })
+  const lastRow = logSheet.getLastRow()
+  if (lastRow > maxLogNum) {
+    const ss = new S()
+    ss.rotateSheet('logs')
+  }
 }
 
 global.SlackDemo = () => {

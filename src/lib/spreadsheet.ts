@@ -1,4 +1,8 @@
 export class Spreadsheet {
+  /**
+   * Spreadsheet.connect: return a sheet fast
+   * @param param SpreadsheetParams
+   */
   public static connect(param: SpreadsheetParams = {}): GoogleAppsScript.Spreadsheet.Sheet {
     let tmpSs: GoogleAppsScript.Spreadsheet.Spreadsheet = null
     if (param.fileId) {
@@ -30,20 +34,28 @@ export class Spreadsheet {
     this.spreadsheet = tmpSs
   }
 
-  public getCellPairs(column: string = 'A:B', sheetName?: string): any {
-    let sheet = null
-    if (sheetName) {
-      sheet = this.spreadsheet.getSheetByName(sheetName)
-    } else {
-      sheet = this.spreadsheet.getActiveSheet()
-    }
+  /**
+   * getCellPairs: Get cells from target range, form as KEY-VALUE object
+   * @param column target range
+   * @param sheetName target sheet, default: sheet 'settings'
+   */
+  public getCellPairs(column: string = 'A:B', sheetName: string = 'settings'): any {
+    const sheet = this.spreadsheet.getSheetByName(sheetName)
+    if (!sheet) { throw new Error('No Available Sheet!') }
     const range = sheet.getRange(column)
     const rows = range.getValues().filter(row => row[0])
     const values = {}
-    rows.forEach(r => values[r[0].toString()] = r[1])
+    rows.forEach(r => values[r[0].toString()] = r[r.length - 1])
     return values
   }
 
+  /**
+   * updateValsByKeys: Update columns by KEY-VALUE object
+   * First column of range as KEY, Last column of range as VALUE
+   * @param params object: {key: value}
+   * @param column string: taget columns like 'A:B', 'A2:B10', 'A2:C10'
+   * @param sheetName string: target sheet name, if empty, getActiveSheet
+   */
   public updateValsByKeys(params: {}, column: string, sheetName?: string) {
     let sheet = null
     if (sheetName) {
@@ -51,6 +63,7 @@ export class Spreadsheet {
     } else {
       sheet = this.spreadsheet.getActiveSheet()
     }
+    if (!sheet) { throw new Error('No Available Sheet!') }
     const range = sheet.getRange(column)
     const keys = Object.keys(params)
     const keyLocats = {}
@@ -72,10 +85,56 @@ export class Spreadsheet {
       cell.setValue(params[k])
     })
   }
+
+  /**
+   * rotateSheet: rotate target sheet
+   * @param sheetName sheet to be rotated
+   * @param options RotateSheetOpt
+   * @param options.hideCopy hide copied sheet, default: true
+   * @param options.rotatedName name of copied sheet, default: sheetName_yyyy-MM-dd
+   * @param options.useHeader set sheet header, default: true
+   */
+  public rotateSheet(sheetName: string, options: RotateSheetOpt = {}) {
+    const SS = this.spreadsheet
+    const sheet = SS.getSheetByName(sheetName)
+    if (!sheet) { throw new Error('No Available Sheet!') }
+    const now = new Date()
+    const dateString = Utilities.formatDate(now, 'UTC', 'yyyy-MM-dd')
+
+    let { rotatedName, useHeader, hideCopy } = options
+    rotatedName = rotatedName || `${sheetName}_${dateString}`
+    useHeader = useHeader || true
+    hideCopy = hideCopy || true
+
+    if (!useHeader) { useHeader = true }
+    let copiedSheet = SS.getSheetByName(rotatedName)
+    if (copiedSheet !== null) { throw new Error(`Sheet ${rotatedName} Exsits!`) }
+    const sheetsNum = SS.getNumSheets()
+    copiedSheet = SS.insertSheet(rotatedName, sheetsNum, { template: sheet })
+    if (useHeader) {
+      const range = sheet.getRange('1:1')
+      const row = range.getValues()[0]
+      Logger.log(row)
+      sheet.clearContents()
+      sheet.appendRow(row)
+    } else {
+      sheet.clear()
+    }
+    if (hideCopy) {
+      copiedSheet.hideSheet()
+    }
+    return { sheet, copiedSheet }
+  }
 }
 
 interface SpreadsheetParams {
   fileId?: string,
   fileUrl?: string,
   sheetName?: string
+}
+
+interface RotateSheetOpt {
+  hideCopy?: boolean,
+  rotatedName?: string,
+  useHeader?: boolean
 }

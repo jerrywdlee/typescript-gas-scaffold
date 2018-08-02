@@ -4,6 +4,7 @@ interface Global {
   doPost(e): any
   fetchSampleJson(): any
   SheetDemo(): any
+  RotateLogDeme(): any
   SlackDemo(): any
 }
 
