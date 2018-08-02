@@ -56,7 +56,7 @@ global.SheetDemo = () => {
   const ss = new S()
   const data = ss.getCellPairs('A:B')
   Logger.log(JSON.stringify(data))
-  ss.updateValsByKeys({ key3: 'new_key_3' }, 'A:B', 'settings')
+  ss.updateValsByKeys({ key3: 'new_key_3' }, 'A:B')
 }
 
 global.RotateLogDeme = () => {
