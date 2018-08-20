@@ -8,7 +8,7 @@ export class Slack {
   }
 
   public sendMsg(payload: SlackPayload) {
-    const params = {
+    const params: GoogleAppsScript.URL_Fetch.URLFetchRequestOptions = {
       method: 'post',
       contentType: 'application/json',
       payload: JSON.stringify({ ...this.config, ...payload }),

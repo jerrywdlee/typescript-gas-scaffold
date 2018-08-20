@@ -15,8 +15,8 @@
     "watch_push": "watch 'npm run lint && npm run build && npm run clasp push' src/ public/"
   },
   "devDependencies": {
-    "@google/clasp": "^1.4.1",
-    "@types/google-apps-script": "^0.0.25",
+    "@google/clasp": "^1.5.3",
+    "@types/google-apps-script": "^0.0.27",
     "awesome-typescript-loader": "^3.5.0",
     "copy-webpack-plugin": "^4.5.2",
     "del-cli": "^1.1.0",
