@@ -56,6 +56,8 @@ global.SheetDemo = () => {
   const ss = new S()
   const data = ss.getCellPairs('A:B')
   Logger.log(JSON.stringify(data))
+  const data2 = ss.getCellPairs('B:A') // reversed
+  Logger.log(JSON.stringify(data2))
   ss.updateValsByKeys({ key3: 'new_key_3' }, 'A:B')
 }
 

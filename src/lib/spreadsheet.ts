@@ -36,16 +36,27 @@ export class Spreadsheet {
 
   /**
    * getCellPairs: Get cells from target range, form as KEY-VALUE object
-   * @param column target range
+   * @param column target range, first column as key, last column as value
    * @param sheetName target sheet, default: sheet 'settings'
    */
   public getCellPairs(column: string = 'A:B', sheetName: string = 'settings'): any {
     const sheet = this.spreadsheet.getSheetByName(sheetName)
     if (!sheet) { throw new Error('No Available Sheet!') }
-    const range = sheet.getRange(column)
-    const rows = range.getValues().filter(row => row[0])
+    let [l1, l2] = column.split(':').map(l => l.toUpperCase())
+    let reverseFlg = false
+    if (l1 > l2) {
+      reverseFlg = true; [l2, l1] = [l1, l2]
+    }
+    const columnStr = `${l1}:${l2}`
+    Logger.log(columnStr)
+    const range = sheet.getRange(columnStr)
     const values = {}
-    rows.forEach(r => values[r[0].toString()] = r[r.length - 1])
+    const rows = range.getValues().filter(row => row[0])
+    if (reverseFlg) {
+      rows.forEach(r => values[r[r.length - 1].toString()] = r[0].toString())
+    } else {
+      rows.forEach(r => values[r[0].toString()] = r[r.length - 1])
+    }
     return values
   }
 
