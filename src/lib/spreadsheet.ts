@@ -37,18 +37,11 @@ export class Spreadsheet {
   /**
    * getCellPairs: Get cells from target range, form as KEY-VALUE object
    * @param column target range, first column as key, last column as value
-   * @param sheetName target sheet, default: sheet 'settings'
+   * @param sheetName target sheet, default: active sheet
    */
-  public getCellPairs(column: string = 'A:B', sheetName: string = 'settings'): any {
-    const sheet = this.spreadsheet.getSheetByName(sheetName)
-    if (!sheet) { throw new Error('No Available Sheet!') }
-    let [l1, l2] = column.split(':').map(l => l.toUpperCase())
-    let reverseFlg = false
-    if (l1 > l2) {
-      reverseFlg = true; [l2, l1] = [l1, l2]
-    }
-    const columnStr = `${l1}:${l2}`
-    Logger.log(columnStr)
+  public getCellPairs(column: string = 'A:B', sheetName?: string): any {
+    const sheet = this.getSheetByName(sheetName)
+    const { reverseFlg, columnStr } = this.shapingColumnStr(column)
     const range = sheet.getRange(columnStr)
     const values = {}
     const rows = range.getValues().filter(row => row[0])
@@ -68,13 +61,7 @@ export class Spreadsheet {
    * @param sheetName string: target sheet name, if empty, getActiveSheet
    */
   public updateValsByKeys(params: {}, column: string, sheetName?: string) {
-    let sheet = null
-    if (sheetName) {
-      sheet = this.spreadsheet.getSheetByName(sheetName)
-    } else {
-      sheet = this.spreadsheet.getActiveSheet()
-    }
-    if (!sheet) { throw new Error('No Available Sheet!') }
+    const sheet = this.getSheetByName(sheetName)
     const range = sheet.getRange(column)
     const keys = Object.keys(params)
     const keyLocats = {}
@@ -135,6 +122,27 @@ export class Spreadsheet {
       copiedSheet.hideSheet()
     }
     return { sheet, copiedSheet }
+  }
+
+  private getSheetByName(sheetName?: string) {
+    let sheet = null
+    if (sheetName) {
+      sheet = this.spreadsheet.getSheetByName(sheetName)
+    } else {
+      sheet = this.spreadsheet.getActiveSheet()
+    }
+    if (!sheet) { throw new Error('No Available Sheet!') }
+    return sheet
+  }
+
+  private shapingColumnStr(column: string) {
+    let [l1, l2] = column.split(':').map(l => l.toUpperCase())
+    let reverseFlg = false
+    if (l1 > l2) {
+      reverseFlg = true; [l2, l1] = [l1, l2]
+    }
+    const columnStr = `${l1}:${l2}`
+    return { reverseFlg, columnStr }
   }
 }
 
