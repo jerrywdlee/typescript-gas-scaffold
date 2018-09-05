@@ -14,6 +14,9 @@
     "clasp": "cd build/ && clasp",
     "watch_push": "watch 'npm run lint && npm run build && npm run clasp push' src/ public/"
   },
+  "sideEffects": [
+    "./public/*"
+  ],
   "devDependencies": {
     "@google/clasp": "^1.5.3",
     "@types/google-apps-script": "^0.0.27",
