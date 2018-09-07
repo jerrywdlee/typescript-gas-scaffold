@@ -29,7 +29,10 @@ module.exports = {
         properties: false,  // optimize property access: a["foo"] → a.foo
       },
       // TODO: Try add `function test() {}; function doGet() {}...` before compressed codes
-      mangle: false,
+      // mangle: false,
+      mangle: {
+        except: ['global']
+      },
       beautify: true,
       output: {
         indent_level: 2,
