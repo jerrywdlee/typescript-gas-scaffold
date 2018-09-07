@@ -28,8 +28,12 @@ module.exports = {
         sequences: true,  // join consecutive statemets with the “comma operator”
         properties: false,  // optimize property access: a["foo"] → a.foo
       },
+      // TODO: Try add `function test() {}; function doGet() {}...` before compressed codes
       mangle: false,
       beautify: true,
+      output: {
+        indent_level: 2,
+      },
     }),
   ],
 };
