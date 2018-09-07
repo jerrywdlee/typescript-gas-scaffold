@@ -54,11 +54,15 @@ global.SheetDemo = () => {
     sheet.appendRow(row)
   })
   const ss = new S()
-  const data = ss.getCellPairs('A:B')
+  const data = ss.getCellPairs('A2:B10')
   Logger.log(JSON.stringify(data))
-  const data2 = ss.getCellPairs('B:A') // reversed
+  // { "key1": "key_0001", "key2": "key_0002", "key3": "key_0003" }
+  ss.updateValsByKeys({ key3: 'new_val_3' }, 'A:C')
+  // reversed
+  const data2 = ss.getCellPairs('B:A')
   Logger.log(JSON.stringify(data2))
-  ss.updateValsByKeys({ key3: 'new_key_3' }, 'A:B')
+  // { "key_0001": "key1", "key_0002": "key2", "key_0003": "key3" }
+  ss.updateValsByKeys({ key_0002: 'new_val_2' }, 'B2:A10')
 }
 
 global.RotateLogDeme = () => {
