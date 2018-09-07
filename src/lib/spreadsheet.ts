@@ -57,22 +57,19 @@ export class Spreadsheet {
    * updateValsByKeys: Update columns by KEY-VALUE object
    * First column of range as KEY, Last column of range as VALUE
    * @param params object: {key: value}
-   * @param column string: taget columns like 'A:B', 'A2:B10', 'A2:C10'
+   * @param column string: taget columns like 'A:B', 'A2:C10', 'B2:A10'; Key as 1st column, Value as last column
    * @param sheetName string: target sheet name, if empty, getActiveSheet
    */
   public updateValsByKeys(params: {}, column: string, sheetName?: string) {
     const sheet = this.getSheetByName(sheetName)
-    const range = sheet.getRange(column)
+    const { reverseFlg, columnStr, offset } = this.shapingColumnStr(column)
+    const [, valCol] = column.split(':')
+    const range = sheet.getRange(columnStr)
     const keys = Object.keys(params)
     const keyLocats = {}
-    const [keyCol, valCol] = column.split(':')
 
-    let offset = 1
-    if (keyCol.match(/(\d+)/)) {
-      offset = parseInt(RegExp.$1, 10)
-    }
     range.getValues().forEach((row, i) => {
-      const k = row[0].toString()
+      const k = reverseFlg ? row[row.length - 1].toString() : row[0].toString()
       if (keys.indexOf(k) !== -1) {
         keyLocats[k] = i + offset
       }
@@ -141,8 +138,17 @@ export class Spreadsheet {
     if (l1 > l2) {
       reverseFlg = true; [l2, l1] = [l1, l2]
     }
+    let offset = 1
+    if (l1.match(/(\d+)/)) {
+      offset = parseInt(RegExp.$1, 10)
+    }
+    if (l2.match(/(\d+)/)) {
+      const tmpOffset = parseInt(RegExp.$1, 10)
+      offset = offset < tmpOffset ? offset : tmpOffset
+    }
+
     const columnStr = `${l1}:${l2}`
-    return { reverseFlg, columnStr }
+    return { reverseFlg, columnStr, offset }
   }
 }
 
