@@ -23,7 +23,8 @@ $ npm i
 
 ### Init Project
 ```sh
-$ npm run init
+$ npm run reset
+# It will delete exist .git folder and run git init
 ```
 
 ## Usage
@@ -68,13 +69,15 @@ $ cd build/ && $(npm bin)/clasp pull
 _**Need Do `Clone` and `Pull` first!**_  
 _**May need refresh work space to show change**_
 ```sh
+$ npm run push
+# OR
 $ npm run clasp push
 # OR
 $ cd build/ && $(npm bin)/clasp push
 ```
 
 ### Watch & Push
-If Clasp is configed, run `npm run watch_push` will be faster.
+If Clasp is configed, run `npm run watch:push` will be faster.
 
 ## Notice
 
