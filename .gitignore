@@ -1,6 +1,7 @@
 build/*
 !build/.gitkeep
 gapps.config.json
+.node-version
 
 # Created by https://www.gitignore.io/api/macos,node
 
