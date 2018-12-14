@@ -1,6 +1,6 @@
 {
   "name": "typescript-gas-scaffold",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Scaffold to create GAS app from Typescript",
   "repository": "https://github.com/jerrywdlee/typescript-gas-scaffold.git",
   "main": "src/index.ts",
