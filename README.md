@@ -3,12 +3,13 @@
 
 ## About
 
-This is a scaffold for writing Google Apps Script in TypeScript and building with webpack.
+This is a scaffold for writing Google Apps Script in TypeScript and building with webpack.  
+[Japanese README](https://qiita.com/jerrywdlee/items/a037bb7764b0671d4059)
 
 ## Requirements
 
 * Git
-* Node.js 8.10.0 or heigher
+* Node.js 8.10.0 or higher
 
 ## Install & Initiation
 ### Clone Repo
