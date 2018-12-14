@@ -12,7 +12,9 @@
     "watch": "watch 'npm run lint && npm run build' src/ public/",
     "build": "webpack",
     "clasp": "cd build/ && clasp",
-    "push" : "npm run clasp push",
+    "push": "npm run clasp push",
+    "open": "npm run clasp open",
+    "deploy": "npm run clasp deploy",
     "watch:push": "watch 'npm run lint && npm run build && npm run push' src/ public/"
   },
   "sideEffects": [
