@@ -13,7 +13,7 @@ global.doGet = (e) => {
   const sheet = S.connect()
   sheet.appendRow([(new Date()).toLocaleString(), JSON.stringify(e)])
   let params = ''
-  if (e) {
+  if (e && e.parameter && e.parameter.res) {
     params = e.parameter.res.toString()
   }
 

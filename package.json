@@ -1,6 +1,6 @@
 {
   "name": "typescript-gas-scaffold",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Scaffold to create GAS app from Typescript",
   "repository": "https://github.com/jerrywdlee/typescript-gas-scaffold.git",
   "main": "src/index.ts",
@@ -12,7 +12,9 @@
     "watch": "watch 'npm run lint && npm run build' src/ public/",
     "build": "webpack",
     "clasp": "cd build/ && clasp",
-    "push" : "npm run clasp push",
+    "push": "npm run clasp push",
+    "open": "npm run clasp open",
+    "deploy": "npm run clasp deploy",
     "watch:push": "watch 'npm run lint && npm run build && npm run push' src/ public/"
   },
   "sideEffects": [
