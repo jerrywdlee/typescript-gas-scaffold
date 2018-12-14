@@ -7,12 +7,13 @@
   "author": "Jerry lee",
   "license": "MIT",
   "scripts": {
-    "init": "del .git && git init",
+    "reset": "del .git && git init",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "watch": "watch 'npm run lint && npm run build' src/ public/",
     "build": "webpack",
     "clasp": "cd build/ && clasp",
-    "watch_push": "watch 'npm run lint && npm run build && npm run clasp push' src/ public/"
+    "push" : "npm run clasp push",
+    "watch:push": "watch 'npm run lint && npm run build && npm run push' src/ public/"
   },
   "sideEffects": [
     "./public/*"
