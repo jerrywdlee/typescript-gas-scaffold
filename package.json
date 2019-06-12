@@ -21,7 +21,7 @@
     "./public/*"
   ],
   "devDependencies": {
-    "@google/clasp": "^1.5.3",
+    "@google/clasp": "^2.1.0",
     "@types/google-apps-script": "^0.0.27",
     "awesome-typescript-loader": "^3.5.0",
     "copy-webpack-plugin": "^4.5.2",
